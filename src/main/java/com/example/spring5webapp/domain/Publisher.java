@@ -16,7 +16,7 @@ public class Publisher {
     private String state;
     private String zip;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
 

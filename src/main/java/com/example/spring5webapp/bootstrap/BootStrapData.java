@@ -11,6 +11,7 @@ import com.example.spring5webapp.repositories.PublisherRepository;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
+
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
@@ -24,47 +25,42 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("###### Started boootstrap app#########");
+        System.out.println("Started in Bootstrap");
 
-//        Publisher ptc = new Publisher();
-//        ptc.setName("PTC");
-//        ptc.setState("fl");
-//        ptc.setCity("florida");
-//        ptc.setAddressLine1("ward 1");
+        Publisher publisher = new Publisher();
+        publisher.setName("SFG Publishing");
+        publisher.setCity("St Petersburg");
+        publisher.setState("FL");
 
-        Publisher oxford = new Publisher();
-        oxford.setName("oxford");
-        oxford.setCity("london");
-        oxford.setState("london");
-        oxford.setAddressLine1("street1");
+        publisherRepository.save(publisher);
 
-        System.out.println("printing words" + publisherRepository.count());
+        System.out.println("Publisher Count: " + publisherRepository.count());
 
-        Author eric = new Author("eric", "evans");
-        Book ddd = new Book("domain driven design", "123123");
-
+        Author eric = new Author("Eric", "Evans");
+        Book ddd = new Book("Domain Driven Design", "123123");
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
-        ddd.setPublisher(oxford);
-        oxford.getBooks().add(ddd);
+
+        ddd.setPublisher(publisher);
+        publisher.getBooks().add(ddd);
 
         authorRepository.save(eric);
         bookRepository.save(ddd);
-        publisherRepository.save(oxford);
+        publisherRepository.save(publisher);
 
-//        Author rod = new Author("rode", "thomson");
-//        Book noEJB = new Book("any random book", "123124");
-//        rod.getBooks().add(noEJB);
-//        noEJB.getAuthors().add(rod);
-//        noEJB.setPublisher(oxford);
-//        oxford.getBooks().add(noEJB);
+        Author rod = new Author("Rod", "Johnson");
+        Book noEJB = new Book("J2EE Development without EJB", "3939459459");
+        rod.getBooks().add(noEJB);
+        noEJB.getAuthors().add(rod);
 
-//        authorRepository.save(rod);
-//        bookRepository.save(noEJB);
-//        publisherRepository.save(ptc);
+        noEJB.setPublisher(publisher);
+        publisher.getBooks().add(noEJB);
 
-        System.out.println("No of Books" + bookRepository.count());
-        System.out.println("No of Publisher" + publisherRepository.count());
-        System.out.println("no of publisherd book size "+ oxford.getBooks().size());
+        authorRepository.save(rod);
+        bookRepository.save(noEJB);
+        publisherRepository.save(publisher);
+
+        System.out.println("Number of Books: " + bookRepository.count());
+        System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
     }
 }
