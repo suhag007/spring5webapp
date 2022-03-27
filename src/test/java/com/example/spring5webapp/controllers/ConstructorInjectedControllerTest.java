@@ -5,15 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-// least prefered method coding
-class PropertyInjectedControllerTest {
-    PropertyInjectedController controller;
+
+class ConstructorInjectedControllerTest {
+    // ********  most prefered method of implementation.
+    ConstructorInjectedController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new PropertyInjectedController();
-
-        controller.greetingService = new GreetingServiceImpl();
+        controller = new ConstructorInjectedController(new GreetingServiceImpl());
     }
 
     @Test
