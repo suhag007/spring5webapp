@@ -1,10 +1,9 @@
 package com.example.spring5webapp.controllers;
 
-import com.example.spring5webapp.services.GreetingServiceImpl;
+import com.example.spring5webapp.services.ConstructorGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 // least prefered method coding
 class PropertyInjectedControllerTest {
     PropertyInjectedController controller;
@@ -13,7 +12,7 @@ class PropertyInjectedControllerTest {
     void setUp() {
         controller = new PropertyInjectedController();
 
-        controller.greetingService = new GreetingServiceImpl();
+        controller.greetingService = new ConstructorGreetingService();
     }
 
     @Test
