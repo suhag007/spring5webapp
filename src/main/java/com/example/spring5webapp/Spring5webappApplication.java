@@ -1,9 +1,6 @@
 package com.example.spring5webapp;
 
-import com.example.spring5webapp.controllers.ConstructorInjectedController;
-import com.example.spring5webapp.controllers.MyController;
-import com.example.spring5webapp.controllers.PropertyInjectedController;
-import com.example.spring5webapp.controllers.SetterInjectedController;
+import com.example.spring5webapp.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -20,6 +17,10 @@ public class Spring5webappApplication {
 //		String greeting = myController.sayHello();
 //
 //		System.out.println(greeting);
+
+		System.out.println("_____________ profile");
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
 
 		System.out.println("______________ my controller");
 		System.out.println(myController.sayHello());
